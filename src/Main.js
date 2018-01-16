@@ -8,7 +8,6 @@ export class Main extends React.Component {
             <div className="main">
                 <WrappedRegister/>
             </div>
-
         );
     }
 }
