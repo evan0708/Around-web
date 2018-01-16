@@ -43,7 +43,7 @@ class RegistrationForm extends React.Component {
             },
             wrapperCol: {
                 xs: { span: 24 },
-                sm: { span: 10 },
+                sm: { span: 16 },
             },
         };
         const tailFormItemLayout = {
@@ -60,7 +60,7 @@ class RegistrationForm extends React.Component {
         };
 
         return (
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit} className="register-form">
                 <FormItem
                     {...formItemLayout}
                     label="Username"
