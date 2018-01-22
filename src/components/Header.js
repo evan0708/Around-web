@@ -9,19 +9,18 @@ export class Header extends React.Component {
     handleLogout: PropTypes.func.isRequired,
   }
   render() {
-      return (
-          <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Around</h1>
-              {this.props.isLoggedIn ?
-                <a href="#"
-                   className="logout"
-                   onClick={this.props.handleLogout}
-                >
-                  <Icon type="logout" />
-                  {' '}Loggout
-                </a> : null}
-          </header>
-      );
+    return (
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1 className="App-title">Around</h1>
+        {this.props.isLoggedIn ?
+          <a className="logout"
+             onClick={this.props.handleLogout}
+          >
+            <Icon type="logout" />
+            {' '}Loggout
+          </a> : null}
+      </header>
+    );
   }
 }
