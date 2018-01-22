@@ -8,12 +8,13 @@ const operations = <Button>Extra Action</Button>;
 
 export class Home extends React.Component {
   state = {
+    error: '',
     loadingGeoLocation: false,
   }
   componentDidMount() {
     if ("geolocation" in navigator) {
       /* geolocation is available */
-      this.setState({loadingGeoLocation: true});
+      this.setState({loadingGeoLocation: true, error: ''});
       navigator.geolocation.getCurrentPosition(
           this.onSuccessGeoLocation,
           this.onFailedLoadGeoLocation,
@@ -21,23 +22,25 @@ export class Home extends React.Component {
       );
     } else {
       /* geolocation IS NOT available */
-      console.log("geo location not supported");
+      this.setState({ error: "Your browser does not support geo-location!" });
     }
   }
 
   onSuccessGeoLocation =(position) => {
     console.log(position);
-    this.setState({loadingGeoLocation: false});
+    this.setState({loadingGeoLocation: false, error: ''});
     const { latitude: lat, longitude: lon } = position.coords;
     localStorage.setItem(POS_KEY, JSON.stringify({lat: lat, lon: lon}));
   }
 
-  onFailedLoadGeoLocation = () => {
-    this.setState({loadingGeoLocation: false});
+  onFailedLoadGeoLocation = (error) => {
+    this.setState({loadingGeoLocation: false, error: "Failed to load geo location"});
   }
 
   getGalleryPanelContent() {
-    if (this.state.loadingGeoLocation) {
+    if (this.state.error) {
+      return <div>{ this.state.error }</div>;
+    } else if (this.state.loadingGeoLocation) {
       return <Spin tip="Loading geo location..."/>
     }
     return null;
