@@ -1,11 +1,11 @@
 import React from 'react';
 import $ from 'jquery';
-import { Tabs, Button, Spin } from 'antd';
+import { Tabs, Spin } from 'antd';
 import {API_ROOT, AUTH_PREFIX, GEO_OPTIONS, POS_KEY, TOKEN_KEY} from '../constants';
 import { Gallery } from './Gallery'
+import { CreatePostButton} from './CreatePostButton'
 
 const TabPane = Tabs.TabPane;
-const operations = <Button>Extra Action</Button>;
 
 
 export class Home extends React.Component {
@@ -49,7 +49,7 @@ export class Home extends React.Component {
       return <Spin tip="Loading geo location ..."/>;
     } else if (this.state.loadingPosts) {
       return <Spin tip="Loading posts ..."/>;
-    } else if (this.state.posts.length > 0) {
+    } else if (this.state.posts) {
       const images = this.state.posts.map((post) => {
         return {
           user: post.user,
@@ -67,10 +67,10 @@ export class Home extends React.Component {
   }
 
   loadNearbyPosts = () => {
-    //const { lat, lon } = JSON.parse(localStorage.getItem(POS_KEY));
-    const { lat, lon } = {"lat":37.562911,"lon":-122.32552539999998};
+    const { lat, lon } = JSON.parse(localStorage.getItem(POS_KEY));
+    //const { lat, lon } = {"lat":37.562911,"lon":-122.32552539999998};
     this.setState({ loadingPosts: true });
-    $.ajax({
+    return $.ajax({
       url: `${API_ROOT}/search?lat=${lat}&lon=${lon}&range=20`,
       method: 'GET',
       headers: {
@@ -87,8 +87,9 @@ export class Home extends React.Component {
   }
 
   render() {
+    const createPostButton = <CreatePostButton loadNearbyPosts={this.loadNearbyPosts}/>;
     return (
-      <Tabs tabBarExtraContent={operations} className="main-tabs c ">
+      <Tabs tabBarExtraContent={createPostButton} className="main-tabs">
         <TabPane tab="Post" key="1">
           {this.getGalleryPanelContent()}
         </TabPane>
