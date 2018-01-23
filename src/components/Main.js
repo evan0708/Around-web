@@ -7,7 +7,7 @@ import { Home } from './Home';
 
 
 export class Main extends React.Component {
-  static PropTypes = {
+  static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     handleLogin: PropTypes.func.isRequired,
   }
