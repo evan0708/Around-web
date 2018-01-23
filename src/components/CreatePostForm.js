@@ -15,6 +15,11 @@ class CreatePostForm extends React.Component {
   beforeUpload = () => {
     return false;
   }
+
+  getWrappedForm = () => {
+    return this.props.form;
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
