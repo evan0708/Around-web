@@ -13,6 +13,8 @@ export class CreatePostButton extends React.Component {
     this.setState({ visible: true });
   }
   handleCancel = () => {
+    const form = this.form;
+    form.resetFields();
     this.setState({ visible: false });
   }
   handleCreate = () => {
