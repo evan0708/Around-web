@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'antd';
+import { WrappedCreatePostForm} from './CreatePostForm'
 
 export class CreatePostButton extends React.Component {
   state = {
@@ -14,7 +15,6 @@ export class CreatePostButton extends React.Component {
   }
   handleOk = () => {
     this.setState({
-      ModalText: 'The modal will be closed after two seconds',
       confirmLoading: true,
     });
     setTimeout(() => {
@@ -31,7 +31,7 @@ export class CreatePostButton extends React.Component {
     });
   }
   render() {
-    const { visible, confirmLoading, ModalText } = this.state;
+    const { visible, confirmLoading} = this.state;
     return (
         <div>
           <Button type="primary" onClick={this.showModal}>Create New Post</Button>
@@ -43,7 +43,7 @@ export class CreatePostButton extends React.Component {
                  onCancel={this.handleCancel}
                  cancelText="Cancel"
           >
-            <p>{ModalText}</p>
+            <WrappedCreatePostForm/>
           </Modal>
         </div>
     );
