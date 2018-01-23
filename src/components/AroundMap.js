@@ -23,7 +23,7 @@ class AroundMap extends React.Component {
             onClick={this.onToggleOpen}
         >
           {this.state.isOpen ?
-              <InfoWindow onCloseClick={this.props.onToggleOpen}>
+              <InfoWindow onCloseClick={this.onToggleOpen}>
                 <div>something info</div>
               </InfoWindow> : null}
         </Marker>
