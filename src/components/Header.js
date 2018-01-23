@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Icon } from 'antd';
 
 export class Header extends React.Component {
-  static PropTypes = {
+  static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     handleLogout: PropTypes.func.isRequired,
   }
@@ -18,7 +18,7 @@ export class Header extends React.Component {
              onClick={this.props.handleLogout}
           >
             <Icon type="logout" />
-            {' '}Loggout
+            {' '}Logout
           </a> : null}
       </header>
     );
