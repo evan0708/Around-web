@@ -22,9 +22,10 @@ class AroundMap extends React.Component {
             position={{ lat: -34.397, lng: 150.644 }}
             onClick={this.onToggleOpen}
         >
-          {this.state.isOpen && <InfoWindow onCloseClick={this.props.onToggleOpen}>
-            <div>sdfsdfsf</div>
-          </InfoWindow>} : null}
+          {this.state.isOpen ?
+              <InfoWindow onCloseClick={this.props.onToggleOpen}>
+                <div>something info</div>
+              </InfoWindow> : null}
         </Marker>
       </GoogleMap>
     );
