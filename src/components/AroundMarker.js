@@ -21,7 +21,10 @@ export class AroundMarker extends React.Component {
       >
         {this.state.isOpen ?
             <InfoWindow onCloseClick={this.onToggleOpen}>
-              <div>something info</div>
+              <div>
+                <img className="around-marker-image" scr={url} alt={`${user}: ${message}`}/>
+                <p>{`${user}: ${message}`}</p>
+              </div>
             </InfoWindow> : null}
       </Marker>
     );
