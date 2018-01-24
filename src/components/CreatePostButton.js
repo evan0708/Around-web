@@ -33,8 +33,8 @@ export class CreatePostButton extends React.Component {
       // Prepare formData
       const {lat, lon} = JSON.parse(localStorage.getItem(POS_KEY));
       const formData = new FormData();
-      formData.set('lat', lat + Math.random() * 0.1 - 0.05); // adjust offset
-      formData.set('lon', lon + Math.random() * 0.1 - 0.05);
+      formData.set('lat', lat + Math.random() * 0.05 - 0.1); // adjust offset
+      formData.set('lon', lon + Math.random() * 0.05 - 0.1);
       formData.set('message', form.getFieldValue('message'));
       formData.set('image', form.getFieldValue('image')[0]);
 
@@ -72,6 +72,8 @@ export class CreatePostButton extends React.Component {
     this.setState({
       visible: false,
     });
+    const form = this.form.getWrappedForm();
+    form.resetFields();
   }
   saveFormRef = (form) => {
     this.form = form;
