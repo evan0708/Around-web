@@ -4,6 +4,7 @@ import { Modal, Button, message } from 'antd';
 import { WrappedCreatePostForm } from './CreatePostForm';
 import { API_ROOT, TOKEN_KEY, AUTH_PREFIX, POS_KEY } from '../constants';
 import { PropTypes } from 'prop-types';
+import { LOC_SHAKE} from '../constants'
 
 
 export class CreatePostButton extends React.Component {
@@ -33,8 +34,8 @@ export class CreatePostButton extends React.Component {
       // Prepare formData
       const {lat, lon} = JSON.parse(localStorage.getItem(POS_KEY));
       const formData = new FormData();
-      formData.set('lat', lat + Math.random() * 0.05 - 0.1); // adjust offset
-      formData.set('lon', lon + Math.random() * 0.05 - 0.1);
+      formData.set('lat', lat + Math.random() * LOC_SHAKE * 2 - LOC_SHAKE); // adjust offset
+      formData.set('lon', lon + Math.random() * LOC_SHAKE * 2 - LOC_SHAKE);
       formData.set('message', form.getFieldValue('message'));
       formData.set('image', form.getFieldValue('image')[0]);
 
